@@ -2,9 +2,12 @@ package tikape.drinkit.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import tikape.drinkit.database.Database;
+import tikape.drinkit.domain.Annos;
 import tikape.drinkit.domain.AnnosRaakaAine;
 
 public class AnnosRaakaAineDao implements Dao<AnnosRaakaAine, Integer> {
@@ -16,6 +19,7 @@ public class AnnosRaakaAineDao implements Dao<AnnosRaakaAine, Integer> {
     }
 
    
+    @Override
     public AnnosRaakaAine findOne(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -24,6 +28,8 @@ public class AnnosRaakaAineDao implements Dao<AnnosRaakaAine, Integer> {
     public List<AnnosRaakaAine> findAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    
 
     @Override
     public AnnosRaakaAine saveOrUpdate(AnnosRaakaAine object) throws SQLException {

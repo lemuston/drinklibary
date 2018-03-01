@@ -15,6 +15,14 @@
                 <span th:text="${RaakaAine.nimi}">RaakaAine</span>
        </li>
         </ul>
+        
+         <h4>Lisää uusi raaka-aine:</h4>
+  
+  <form method="POST" action="/raakaaineet">
+      
+      <input type="text" name="nimi"/><br/>
+      <input type="submit" value="Lisää"/>
+  </form>
          <ul>
              <li><a href="/drinkit">Takaisin drinkkilistaaan</a></li>
         </ul>

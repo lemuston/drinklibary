@@ -1,4 +1,4 @@
-package AnnosRaakaAine;
+package tikape.drinkit;
 
 import java.util.HashMap;
 import spark.ModelAndView;
@@ -9,6 +9,9 @@ import tikape.drinkit.dao.RaakaAineDao;
 import tikape.drinkit.database.Database;
 import tikape.drinkit.domain.Annos;
 import tikape.drinkit.dao.AnnosDao;
+import tikape.drinkit.domain.AnnosRaakaAine;
+import tikape.drinkit.dao.AnnosRaakaAineDao;
+
 
 
 public class Main {
@@ -19,6 +22,7 @@ public class Main {
         Database database = new Database("jdbc:sqlite:drinkit.db");
         RaakaAineDao raakaaineet = new RaakaAineDao(database);
         AnnosDao annokset = new AnnosDao(database);
+        AnnosRaakaAineDao annosraakaaineet = new AnnosRaakaAineDao(database); 
         
        
 
@@ -32,12 +36,14 @@ public class Main {
         }, new ThymeleafTemplateEngine()); 
 
         Spark.post("/raakaaineet", (req, res) -> {
-            RaakaAine raakaAine = new RaakaAine(-1, req.queryParams("nimi"));
-            raakaaineet.saveOrUpdate(raakaAine);
+            RaakaAine raakaaine = new RaakaAine(-1, req.queryParams("nimi"));
+            raakaaineet.saveOrUpdate(raakaaine);
 
             res.redirect("/raakaaineet");
             return "";
         });
+        
+        
         
         Spark.get("/drinkit", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -50,6 +56,7 @@ public class Main {
         HashMap map = new HashMap<>();
         map.put("annokset", annokset.findAll()); 
         map.put("raakaaineet", raakaaineet.findAll());
+     /*   map.put("annosraakaaineet", annosraakaaineet.findAll()); */
 
             return new ModelAndView(map, "luodrinkki");
         }, new ThymeleafTemplateEngine());
@@ -61,6 +68,18 @@ public class Main {
         Spark.post("/luodrinkki", (req, res) -> {
             Annos annos = new Annos(-1, req.queryParams("nimi"));
             annokset.saveOrUpdate(annos);
+            
+           
+
+            res.redirect("/luodrinkki");
+            return "";
+        }); 
+        
+        Spark.post("/luodrinkki", (req, res) -> {
+            
+            
+            AnnosRaakaAine annosraakaaine = new AnnosRaakaAine(-1, 0, 0, 0, 0, req.queryParams("ohje"));
+            annosraakaaineet.saveOrUpdate(annosraakaaine); 
 
             res.redirect("/luodrinkki");
             return "";

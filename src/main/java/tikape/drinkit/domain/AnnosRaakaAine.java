@@ -19,13 +19,14 @@ public class AnnosRaakaAine {
             
             
 
-    public AnnosRaakaAine(Integer rowid, Integer annosId, Integer raakaaineId, Integer jarjestys, String ohje, Integer maara) {
+    public AnnosRaakaAine(Integer rowid, Integer annosId, Integer raakaaineId, Integer jarjestys, Integer maara, String ohje) {
         this.rowid = rowid;
-        this.jarjestys = jarjestys;
-        this.ohje = ohje;
-        this.maara = maara;
         this.annosId = annosId;
         this.raakaaineId = raakaaineId;
+        this.jarjestys = jarjestys;
+        this.maara = maara;
+        this.ohje = ohje;
+        
     }
 
     public Integer getId() {
@@ -36,16 +37,16 @@ public class AnnosRaakaAine {
         return annosId;
     }
      
-     public Integer getMaara() {
-        return maara;
-    }
-     
       public Integer getRaakaaineId() {
         return raakaaineId;
     }
 
     public Integer getJarjestys() {
         return jarjestys;
+    }
+    
+     public Integer getMaara() {
+        return maara;
     }
     
     public String getOhje() {

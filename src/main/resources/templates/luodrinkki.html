@@ -25,25 +25,34 @@
   </form>
 
   <h4>Lisää drinkkiin raaka-aineita:</h4>
-
-  <form method="POST" action="/luodrinkki">
-      <p> 
-      Drinkin nimi:<br/>
-       <select name="Annos">
-      <option th:each="Annos: ${annokset}" th:text="${Annos.nimi}"></option>
-       </select>
+  Drinkin nimi:</br>
+     <select name="Annos">
+        <option th:each="Annos: ${annokset}" th:text="${Annos.nimi}"></option>
+      </select>
+               
       </p>
+      <p>
       Lisättävä raaka-aine:<br/>
       <select name="RaakaAine">
         <option th:each="RaakaAine: ${raakaaineet}" th:text="${RaakaAine.nimi}"></option>
-      </select>
-      <br/>
+      </select> 
+     
+     
+      </p>
+     
+      <p>
       Järjestys<br/>
-      <input type="text"/><br/>
+      
+          <input type="integer" name=jarjestys>
+      </p>
+      <p>
       Määrä<br/>
       <input type="text"/><br/>
+      </p>
+      <p>
       Ohje<br/>
       <input type="text"/><br/>
+      </p>
       <input type="submit" value="Lisää"/>
   </form>
         
