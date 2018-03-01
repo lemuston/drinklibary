@@ -8,48 +8,49 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tikape.drinkit.database.Database;
+import tikape.drinkit.domain.Annos;
 
-public class RaakaAineDao implements Dao<RaakaAine, Integer> {
+public class AnnosDao implements Dao<Annos, Integer> {
 
     private Database database;
 
-    public RaakaAineDao(Database database) {
+    public AnnosDao(Database database) {
         this.database = database;
     }
 
     @Override
-    public RaakaAine findOne(Integer key) throws SQLException {
+    public Annos findOne(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<RaakaAine> findAll() throws SQLException {
-        List<RaakaAine> raakaaine = new ArrayList<>();
+    public List<Annos> findAll() throws SQLException {
+        List<Annos> annos = new ArrayList<>();
 
         try (Connection conn = database.getConnection();
-            ResultSet result = conn.prepareStatement("SELECT rowid, nimi FROM RaakaAine").executeQuery()) {
+            ResultSet result = conn.prepareStatement("SELECT rowid, nimi FROM Annos").executeQuery()) {
 
             while (result.next()) {
-                raakaaine.add(new RaakaAine(result.getInt("rowid"), result.getString("nimi")));
+                annos.add(new Annos(result.getInt("rowid"), result.getString("nimi")));
             }
         }
 
-        return raakaaine;
+        return annos;
     }
     
     
 
     @Override
-    public RaakaAine saveOrUpdate(RaakaAine object) throws SQLException {
+    public Annos saveOrUpdate(Annos object) throws SQLException {
         
-        RaakaAine byNimi = findByNimi(object.getNimi());
+        Annos byNimi = findByNimi(object.getNimi());
 
         if (byNimi != null) {
             return byNimi;
         } 
 
         try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO RAAKAAINE (nimi) VALUES (?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO ANNOS (nimi) VALUES (?)");
             stmt.setString(1, object.getNimi());
             stmt.executeUpdate();
         }
@@ -57,9 +58,9 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         return findByNimi(object.getNimi());
     }
 
-    private RaakaAine findByNimi(String nimi) throws SQLException {
+    private Annos findByNimi(String nimi) throws SQLException {
         try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("SELECT rowid, nimi FROM RaakaAine WHERE nimi = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT rowid, nimi FROM Annos WHERE nimi = ?");
             stmt.setString(1, nimi);
 
             ResultSet result = stmt.executeQuery();
@@ -67,7 +68,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
                 return null;
             }
 
-            return new RaakaAine(result.getInt("rowid"), result.getString("nimi"));
+            return new Annos(result.getInt("rowid"), result.getString("nimi"));
         }
     }
 

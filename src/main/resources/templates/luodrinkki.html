@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Otsikko</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Drinkit</h1>
+
+        <ul>
+        <li th:each="Annos : ${annokset}">
+                <span th:text="${Annos.nimi}">Drinkki</span>
+       </li>
+        </ul>
+        
+        
+        <h4>Lisää uusi</h4>
+  
+  <form method="POST" action="/luodrinkki">
+      Drinkin nimi:<br/>
+      <input type="text" name="nimi"/><br/>
+      <input type="submit" value="Lisää"/>
+  </form>
+
+  <h4>Lisää drinkkiin raaka-aineita:</h4>
+
+  <form method="POST" action="/luodrinkki">
+      <p> 
+      Drinkin nimi:<br/>
+       <select name="Annos">
+      <option th:each="Annos: ${annokset}" th:text="${Annos.nimi}"></option>
+       </select>
+      </p>
+      Lisättävä raaka-aine:<br/>
+      <select name="RaakaAine">
+        <option th:each="RaakaAine: ${raakaaineet}" th:text="${RaakaAine.nimi}"></option>
+      </select>
+      <br/>
+      Järjestys<br/>
+      <input type="text"/><br/>
+      Määrä<br/>
+      <input type="text"/><br/>
+      Ohje<br/>
+      <input type="text"/><br/>
+      <input type="submit" value="Lisää"/>
+  </form>
+        
+        
+        <ul>
+            <li><a href="/drinkit">Takaisin drinkkilistaan</a>
+        </ul>
+
+    </body>
+</html>

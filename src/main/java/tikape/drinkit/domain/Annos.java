@@ -9,12 +9,12 @@ package tikape.drinkit.domain;
  *
  * @author laura
  */
-public class RaakaAine {
+public class Annos {
 
     private Integer rowid;
     private String nimi;
 
-    public RaakaAine(Integer rowid, String nimi) {
+    public Annos(Integer rowid, String nimi) {
         this.rowid = rowid;
         this.nimi = nimi;
     }

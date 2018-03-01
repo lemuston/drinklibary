@@ -1,25 +1,33 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <title>Raaka-aineet:</title>
-        <meta charset="utf-8" />
-    </head>
-
-    <body>
-        <h1>Drinkkikirjasto</h1>
-
-        <ul>
-            <li th:each="RaakaAine : ${drinkit}">
-                <span th:text="${RaakaAine.nimi}">RaakaAine</span>
-            </li>
+  
+<head>
+  <title>Drinkkikirjasto</title>
+</head>
+<body>
+  <h2>Drinkkilista</h2>
+  
+   <ul>
+        <li th:each="Annos : ${drinkit}">
+                <span th:text="${Annos.nimi}">Drinkki</span>
+       </li>
         </ul>
+  
 
-        <h2>Lisää uusi raaka-aine</h2>
-
-        <form method="POST" action="/drinkit">
-            <input type="string" name="nimi"/><br/>
-            <input type="submit" value="Add!"/>
-        </form>
-    </body>
+  <ul>
+    <li>
+      <a href="/luodrinkki">Luo uusi drinkki</a>
+    </li>
+    <li>
+      
+      <a href="/raakaaineet">Tarkastele ja lisää aineksiaaa</a>
+    </li>
+  </ul>
 </html>
+    
+
+        
+       
+        
+       
